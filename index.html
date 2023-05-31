@@ -42,10 +42,16 @@
     <main>
 	 <header><h3>A JavaScript Project by Kaleb Castle</h3></header>
 	 <h3 id="my-greeting">Greeting goes here</h3>
-	    <p>Explain what your page does and how it works here!</p>
-	  <img src="my-pic" alt="Time of Day Image" class="flexible">
+	 <p>This webpage uses JavaScript to display a diffrent message, color, greeting, and picture based on the current hour and during these times:</p>
+	    <p><li>Morning (5am to 12 noon)</li>
+			<li>Afternoon (12 noon to 6pm)</li>
+			<li>Evening (6pm to 11pm)</li>
+			<li>Night (11pm to 5am)</li></p>
+
+		
+		<img id="my-pic"src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
      <footer>
-      <p><small>&copy; 2022 by 
+      <p><small>&copy; 2022-<span id="my-copyright">year goes here</span> by
           Kaleb Castle, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
           <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
@@ -69,25 +75,32 @@ Night (11pm to 5am)
 */
 	let myDate = new Date();
 	let myHour = myDate.getHours();
+	let myYear = myDate.getFullYear();
 	let myGreeting = "";
 	let myColor = "";
 	let myPic = "";
-
+	//myHour =12 ;
 console.log(myHour);
 
-	if(myHour <12){
+	if(myHour >= 5 && myHour <12){
 		//alert("Good Morning!");
 		myGreeting = "Good Morning";
 		myColor = "orange";
-		myPic = "morning.jpg"
-
-	}else{
-		//alert("Good Afternoon!")
+		myPic = "morning.jpg";
+	}else if(myHour >= 12 && myHour <18){
 		myGreeting = "Good Afternoon"
 		myColor = "green";
-		myPic = "afternoon.jpg"
+		myPic = "afternoon.jpg";
+	}else if(myHour >= 18 && myHour <23){
+		myGreeting = "Good Evening"
+		myColor = "Purple";
+		myPic = "evening.jpg";
+	}else{
+		//alert("Good Afternoon!")
+		myGreeting = "Good Night"
+		myColor = "Blue";
+		myPic = "night.jpg";
 	}
-
 	myPic = "images/" + myPic;
 
 	document.getElementById("my-greeting").innerHTML = myGreeting
@@ -95,6 +108,8 @@ console.log(myHour);
 	document.querySelector("html").style.backgroundColor = myColor
 
 	document.getElementById("my-pic").src = myPic;
+
+	document.getElementById("my-copyright").innerHTML = myYear
 
 
     document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
